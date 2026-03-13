@@ -5,7 +5,7 @@
 # Web Protocols
 
 **Free, open-source JavaScript tools with zero dependencies.**
-**Built with open-source AI. Use anywhere — even commercially.**
+**Powered by AI. Use anywhere — even commercially.**
 
 <br>
 
@@ -243,9 +243,9 @@ web_protocols/
 
 <br>
 
-## Built with Open-Source AI
+## Powered by AI
 
-Web Protocols was developed with the help of open-source AI tools. All code is human-reviewed, tested, and maintained. AI accelerates development — it does not replace quality engineering.
+Web Protocols was developed with the help of AI tools. All code is human-reviewed, tested, and maintained. AI accelerates development — it does not replace quality engineering.
 
 <br>
 

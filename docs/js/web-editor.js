@@ -11,6 +11,7 @@ let panel = null;
 let isSelecting = false;
 let selectedEl = null;
 let overlay = null;
+let prevStyles = null;
 
 function getStoredStyles() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
@@ -80,7 +81,7 @@ function createPanel() {
       #${PANEL_ID} label{display:block;margin:4px 0;font-size:12px}
       #${PANEL_ID} input[type=text],#${PANEL_ID} input[type=color]{width:100%;box-sizing:border-box;
         background:#16213e;border:1px solid #533483;color:#e0e0e0;padding:4px 8px;border-radius:4px;font-size:12px}
-      #${PANEL_ID} .props{max-height:200px;overflow:auto}
+      #${PANEL_ID} .props{max-height:320px;overflow:auto}
     </style>
     <div class="header">
       <h3>🎨 Web Editor</h3>
@@ -143,10 +144,15 @@ function showEditor(el) {
   const stored = getStoredStyles();
   const current = stored[path] || {};
   const props = [
-    ['color', 'text'], ['background-color', 'color'], ['font-size', 'text'],
+    ['color', 'text'], ['background-color', 'color+text'], ['font-size', 'text'],
     ['font-weight', 'text'], ['padding', 'text'], ['margin', 'text'],
     ['border-radius', 'text'], ['border', 'text'], ['opacity', 'text'],
-    ['display', 'text'], ['visibility', 'text']
+    ['display', 'text'], ['visibility', 'text'],
+    ['text-align', 'text'], ['line-height', 'text'], ['letter-spacing', 'text'],
+    ['text-decoration', 'text'], ['text-transform', 'text'],
+    ['width', 'text'], ['height', 'text'], ['max-width', 'text'], ['min-height', 'text'],
+    ['overflow', 'text'], ['cursor', 'text'], ['box-shadow', 'text'],
+    ['transform', 'text'], ['transition', 'text'], ['background-image', 'text']
   ];
   const body = document.getElementById('we-body');
   const aiSuggestions = analyzeElement(el);
@@ -162,13 +168,19 @@ function showEditor(el) {
     </div>` : '';
 
   body.innerHTML = `<div class="sel">${path}</div>${aiHtml}<div class="props">${
-    props.map(([prop, type]) => `
-      <label>${prop}
+    props.map(([prop, type]) => {
+      if (type === 'color+text') {
+        return `<label>${prop}<div style="display:flex;gap:4px;align-items:center">
+          <input type="color" data-prop="${prop}-picker" value="${current[prop] && current[prop].startsWith('#') ? current[prop] : '#000000'}" style="width:36px;height:28px;padding:1px;flex:0 0 36px;cursor:pointer">
+          <input type="text" data-prop="${prop}" value="${current[prop] || ''}" placeholder="${getComputedStyle(el)[prop] || ''}" style="flex:1">
+        </div></label>`;
+      }
+      return `<label>${prop}
         <input type="${type === 'color' ? 'color' : 'text'}" data-prop="${prop}"
           value="${current[prop] || ''}" placeholder="${getComputedStyle(el)[prop] || ''}">
-      </label>
-    `).join('')
-  }</div><button id="we-apply">Apply & Save</button>`;
+      </label>`;
+    }).join('')
+  }</div><div style="display:flex;gap:4px;margin-top:8px"><button id="we-apply">Apply & Save</button><button id="we-undo" style="opacity:${prevStyles?'1':'.4'}">↩ Undo</button></div>`;
 
   body.querySelectorAll('.ai-suggest').forEach(btn => {
     btn.onclick = () => {
@@ -177,10 +189,21 @@ function showEditor(el) {
     };
   });
 
+  // Sync color picker to text input for background-color
+  const bgPicker = body.querySelector('input[data-prop="background-color-picker"]');
+  const bgText = body.querySelector('input[data-prop="background-color"]');
+  if (bgPicker && bgText) {
+    bgPicker.addEventListener('input', () => { bgText.value = bgPicker.value; });
+  }
+
   document.getElementById('we-apply').onclick = () => {
+    prevStyles = JSON.parse(JSON.stringify(getStoredStyles()));
     const inputs = body.querySelectorAll('input[data-prop]');
     const newProps = {};
-    inputs.forEach(inp => { if (inp.value) newProps[inp.dataset.prop] = inp.value; });
+    inputs.forEach(inp => {
+      if (inp.dataset.prop.endsWith('-picker')) return;
+      if (inp.value) newProps[inp.dataset.prop] = inp.value;
+    });
     if (Object.keys(newProps).length) {
       stored[path] = { ...current, ...newProps };
     } else {
@@ -188,6 +211,16 @@ function showEditor(el) {
     }
     saveStyles(stored);
     applyAllStyles();
+    const undoBtn = document.getElementById('we-undo');
+    if (undoBtn) undoBtn.style.opacity = '1';
+  };
+
+  document.getElementById('we-undo').onclick = () => {
+    if (!prevStyles) return;
+    saveStyles(prevStyles);
+    applyAllStyles();
+    prevStyles = null;
+    if (selectedEl) showEditor(selectedEl);
   };
 }
 
@@ -242,6 +275,24 @@ function analyzeElement(el) {
 
   if (s.opacity !== '1' && parseFloat(s.opacity) < 0.5) {
     suggestions.push({ prop: 'opacity', value: '1', label: 'Element is very transparent — make visible' });
+  }
+
+  const ta = s.textAlign;
+  if ((ta === 'start' || ta === '') && (el.tagName === 'H1' || el.tagName === 'H2' || el.tagName === 'H3')) {
+    suggestions.push({ prop: 'text-align', value: 'center', label: 'Center heading for better visual hierarchy' });
+  }
+
+  const lh = parseFloat(s.lineHeight) / fs;
+  if (!isNaN(lh) && lh < 1.2 && fs >= 12) {
+    suggestions.push({ prop: 'line-height', value: '1.5', label: 'Line height too tight (' + lh.toFixed(1) + ') — increase to 1.5' });
+  }
+
+  if (s.textDecoration.includes('underline') && el.tagName !== 'A') {
+    suggestions.push({ prop: 'text-decoration', value: 'none', label: 'Remove underline from non-link element' });
+  }
+
+  if (s.cursor === 'default' && (el.tagName === 'BUTTON' || el.tagName === 'A')) {
+    suggestions.push({ prop: 'cursor', value: 'pointer', label: 'Add pointer cursor for clickable element' });
   }
 
   return suggestions;

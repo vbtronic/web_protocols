@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Protocols – Free Open-Source Web Tools</title>
-  <meta name="description" content="Free, zero-dependency JavaScript tools built with open-source AI. URL state compression, visual web editor, and data validation.">
+  <meta name="description" content="Free, zero-dependency JavaScript tools powered by AI. URL state compression, visual web editor, and data validation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -16,14 +16,17 @@
     a{color:var(--accent3);text-decoration:none;transition:.2s}a:hover{color:var(--accent2)}
 
     nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;
-      background:rgba(6,6,11,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-    nav .inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
-    nav .logo{font-weight:800;font-size:1.1rem;color:#fff}
+      background:rgba(6,6,11,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    nav .inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+      min-height:56px;padding:8px 0;flex-wrap:wrap;gap:8px}
+    nav .logo{font-weight:800;font-size:1.1rem;color:#fff;white-space:nowrap;flex-shrink:0}
     nav .logo span{color:var(--accent)}
-    nav .links{display:flex;gap:20px;font-size:.85rem;font-weight:500;align-items:center}
-    nav .links a{color:var(--dim)}nav .links a:hover{color:#fff}
+    nav .links{display:flex;gap:8px 12px;font-size:.82rem;font-weight:500;align-items:center;flex-wrap:wrap}
+    nav .links a{color:var(--dim);white-space:nowrap}nav .links a:hover{color:#fff}
+    @media(max-width:900px){nav .links{gap:6px 10px;font-size:.78rem}
+      .gh-btn{padding:4px 8px;font-size:.72rem}}
     .gh-btn{display:inline-flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--border);
-      padding:6px 14px;border-radius:8px;font-size:.8rem;font-weight:600;color:var(--text)}
+      padding:5px 12px;border-radius:8px;font-size:.78rem;font-weight:600;color:var(--text);white-space:nowrap}
     .gh-btn:hover{border-color:var(--accent);color:#fff}
     .mobile-menu{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
 
@@ -72,6 +75,7 @@
     .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     @media(max-width:700px){.demo-grid{grid-template-columns:1fr}
       nav .links{display:none}.mobile-menu{display:block}}
+    @media(min-width:701px) and (max-width:800px){nav .links a:not(.gh-btn){font-size:.72rem}}
     .di{width:100%;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);
       border-radius:8px;color:var(--text);font-size:.9rem;font-family:inherit;margin-bottom:8px}
     .di:focus{border-color:var(--accent);outline:none}
@@ -214,17 +218,17 @@
 
 <section class="hero">
   <h1 data-i18n="hero_title">Web Protocols</h1>
-  <p class="sub" data-i18n="hero_sub">Free, open-source JavaScript tools with zero dependencies. Built with open-source AI. Use in any project — even commercially.</p>
+  <p class="sub" data-i18n="hero_sub">Free, open-source JavaScript tools with zero dependencies. Powered by AI. Use in any project — even commercially.</p>
   <div class="hero-badges">
-    <span class="badge green">Free for Commercial Use</span>
-    <span class="badge blue">Zero Dependencies</span>
-    <span class="badge">Under 3 KB each</span>
-    <span class="badge">Built with AI <span class="ai-badge">OS AI</span></span>
+    <span class="badge green" data-i18n="badge_free">Free for Commercial Use</span>
+    <span class="badge blue" data-i18n="badge_zero">Zero Dependencies</span>
+    <span class="badge" data-i18n="badge_size">Under 3 KB each</span>
+    <span class="badge" data-i18n="badge_ai">Powered by AI</span>
   </div>
   <div class="hero-buttons">
-    <a href="#demo" class="btn btn-primary">Try Live Demo</a>
-    <a href="#download" class="btn btn-outline">Download</a>
-    <a href="https://github.com/vbtronic/web_protocols" class="btn btn-outline" target="_blank">View on GitHub</a>
+    <a href="#demo" class="btn btn-primary" data-i18n="btn_demo">Try Live Demo</a>
+    <a href="#download" class="btn btn-outline" data-i18n="btn_download">Download</a>
+    <a href="https://github.com/vbtronic/web_protocols" class="btn btn-outline" target="_blank" data-i18n="btn_github">View on GitHub</a>
   </div>
 </section>
 
@@ -236,18 +240,18 @@
     </div>
     <div class="products">
       <div class="product">
-        <h3>URL State Compact</h3>
-        <p class="desc">Save any JavaScript object into the URL with compression. Create shareable links that restore full app state — no backend, no database, just a URL.</p>
+        <h3 data-i18n="p1_title">URL State Compact</h3>
+        <p class="desc" data-i18n="p1_desc">Save any JavaScript object into the URL with compression. Create shareable links that restore full app state — no backend, no database, just a URL.</p>
         <span class="tag">~2 KB</span><span class="tag">Compression</span><span class="tag">Framework-agnostic</span>
       </div>
       <div class="product">
-        <h3>Web Editor Live</h3>
-        <p class="desc">A visual CSS editor that lets users customize any website. Point-and-click element selection, edit styles, and everything saves to localStorage automatically.</p>
+        <h3 data-i18n="p2_title">Web Editor Live</h3>
+        <p class="desc" data-i18n="p2_desc">A visual CSS editor that lets users customize any website. Point-and-click element selection, edit styles, and everything saves to localStorage automatically.</p>
         <span class="tag">~3 KB</span><span class="tag">Visual UI</span><span class="tag">localStorage</span>
       </div>
       <div class="product">
-        <h3>Data Guard Lite</h3>
-        <p class="desc">Validate data before saving to localStorage or sessionStorage. Built-in validators for emails, URLs, numbers — plus custom rules and regex support.</p>
+        <h3 data-i18n="p3_title">Data Guard Lite</h3>
+        <p class="desc" data-i18n="p3_desc">Validate data before saving to localStorage or sessionStorage. Built-in validators for emails, URLs, numbers — plus custom rules and regex support.</p>
         <span class="tag">~1 KB</span><span class="tag">Custom Rules</span><span class="tag">10+ Validators</span>
       </div>
     </div>
@@ -261,31 +265,31 @@
       <p data-i18n="demo_sub">No install needed. Everything runs right here in your browser.</p>
     </div>
     <div class="demo-tabs">
-      <div class="demo-tab active" data-tab="demo-url">URL State</div>
-      <div class="demo-tab" data-tab="demo-editor">Web Editor</div>
-      <div class="demo-tab" data-tab="demo-guard">Data Guard</div>
+      <div class="demo-tab active" data-tab="demo-url" data-i18n="tab_url">URL State</div>
+      <div class="demo-tab" data-tab="demo-editor" data-i18n="tab_editor">Web Editor</div>
+      <div class="demo-tab" data-tab="demo-guard" data-i18n="tab_guard">Data Guard</div>
     </div>
 
     <div class="demo-panel active" id="demo-url">
       <div class="demo-area">
-        <h3>URL State — Save Data in the URL</h3>
-        <p style="color:var(--dim);margin-bottom:16px;font-size:.9rem">Fill in the fields, click Save to URL, and watch the address bar change. Copy the link and send it to anyone — they will see your exact data.</p>
+        <h3 data-i18n="demo_url_title">URL State — Save Data in the URL</h3>
+        <p style="color:var(--dim);margin-bottom:16px;font-size:.9rem" data-i18n="demo_url_desc">Fill in the fields, click Save to URL, and watch the address bar change. Copy the link and send it to anyone — they will see your exact data.</p>
         <div class="demo-grid">
           <div>
-            <label style="font-size:.8rem;color:var(--dim)">Name</label>
+            <label style="font-size:.8rem;color:var(--dim)" data-i18n="label_name">Name</label>
             <input class="di" type="text" id="us-name" placeholder="e.g. Viktor">
-            <label style="font-size:.8rem;color:var(--dim)">City</label>
+            <label style="font-size:.8rem;color:var(--dim)" data-i18n="label_city">City</label>
             <input class="di" type="text" id="us-city" placeholder="e.g. Prague">
-            <label style="font-size:.8rem;color:var(--dim)">Favorite Number</label>
+            <label style="font-size:.8rem;color:var(--dim)" data-i18n="label_favnum">Favorite Number</label>
             <input class="di" type="number" id="us-score" placeholder="e.g. 42">
-            <label style="font-size:.8rem;color:var(--dim)">Message</label>
+            <label style="font-size:.8rem;color:var(--dim)" data-i18n="label_message">Message</label>
             <input class="di" type="text" id="us-msg" placeholder="e.g. Hello world!">
           </div>
           <div>
             <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px">
-              <button class="db" id="us-save">Save to URL</button>
-              <button class="db secondary" id="us-load">Load from URL</button>
-              <button class="db green" id="us-share">Copy Link</button>
+              <button class="db" id="us-save" data-i18n="btn_save_url">Save to URL</button>
+              <button class="db secondary" id="us-load" data-i18n="btn_load_url">Load from URL</button>
+              <button class="db green" id="us-share" data-i18n="btn_copy_link">Copy Link</button>
             </div>
             <div class="demo-output" id="us-output">Enter some data and click "Save to URL".
 The URL will update with compressed state.
@@ -297,10 +301,10 @@ Share the link — it restores everything.</div>
 
     <div class="demo-panel" id="demo-editor">
       <div class="demo-area">
-        <h3>Web Editor — Customize This Page</h3>
-        <p style="color:var(--dim);margin-bottom:16px;font-size:.9rem">Click Activate to open the editor panel. Then click Select in the panel and click any element on this page to customize its styles. Changes persist in localStorage.</p>
-        <button class="db" id="we-activate" style="font-size:1rem;padding:14px 32px">Activate Web Editor</button>
-        <button class="db red" id="we-reset" style="margin-left:8px">Reset Styles</button>
+        <h3 data-i18n="demo_editor_title">Web Editor — Customize This Page</h3>
+        <p style="color:var(--dim);margin-bottom:16px;font-size:.9rem" data-i18n="demo_editor_desc">Click Activate to open the editor panel. Then click Select in the panel and click any element on this page to customize its styles. Changes persist in localStorage.</p>
+        <button class="db" id="we-activate" style="font-size:1rem;padding:14px 32px" data-i18n="btn_activate_editor">Activate Web Editor</button>
+        <button class="db red" id="we-reset" style="margin-left:8px" data-i18n="btn_reset_styles">Reset Styles</button>
         <div class="demo-output" id="we-output" style="margin-top:16px">Click "Activate" to start the visual editor.
 Change colors, fonts, spacing, borders, and more.
 Everything persists across page reloads.</div>
@@ -309,8 +313,8 @@ Everything persists across page reloads.</div>
 
     <div class="demo-panel" id="demo-guard">
       <div class="demo-area">
-        <h3>Data Guard — Validate Before Saving</h3>
-        <p style="color:var(--dim);margin-bottom:16px;font-size:.9rem">Try valid and invalid data. Data Guard checks everything before saving to localStorage.</p>
+        <h3 data-i18n="demo_guard_title">Data Guard — Validate Before Saving</h3>
+        <p style="color:var(--dim);margin-bottom:16px;font-size:.9rem" data-i18n="demo_guard_desc">Try valid and invalid data. Data Guard checks everything before saving to localStorage.</p>
         <div class="demo-grid">
           <div>
             <label style="font-size:.8rem;color:var(--dim)">Email (required, must be valid)</label>
@@ -324,9 +328,9 @@ Everything persists across page reloads.</div>
           </div>
           <div>
             <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px">
-              <button class="db" id="dg-save">Validate and Save</button>
-              <button class="db secondary" id="dg-read">Read Storage</button>
-              <button class="db red" id="dg-clear">Clear</button>
+              <button class="db" id="dg-save" data-i18n="btn_validate">Validate and Save</button>
+              <button class="db secondary" id="dg-read" data-i18n="btn_read_storage">Read Storage</button>
+              <button class="db red" id="dg-clear" data-i18n="btn_clear">Clear</button>
             </div>
             <div class="demo-output" id="dg-output">Enter data and click "Validate and Save".
 Try invalid data to see validation errors.
@@ -389,7 +393,7 @@ Rules applied:
       </div>
     </div>
     <div style="text-align:center;margin-top:32px">
-      <p style="color:var(--dim);font-size:.85rem;margin-bottom:8px">Or clone the entire repository:</p>
+      <p style="color:var(--dim);font-size:.85rem;margin-bottom:8px" data-i18n="dl_clone_text">Or clone the entire repository:</p>
       <div style="display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 20px">
         <code style="font-family:'JetBrains Mono',monospace;font-size:.85rem">git clone https://github.com/vbtronic/web_protocols.git</code>
       </div>
@@ -406,7 +410,7 @@ Rules applied:
 
     <div class="steps">
       <div class="step">
-        <h3>Get the files</h3>
+        <h3 data-i18n="step1_title">Get the files</h3>
         <p>Download only the tools you need, or clone the whole repo. Each tool is a single .js file.</p>
         <pre><code>git clone https://github.com/vbtronic/web_protocols.git
 
@@ -414,7 +418,7 @@ Rules applied:
 # or use CDN links directly</code></pre>
       </div>
       <div class="step">
-        <h3>Add to your project</h3>
+        <h3 data-i18n="step2_title">Add to your project</h3>
         <p>Copy the .js file into your project folder. No npm install, no build step.</p>
         <pre><code>your-project/
   index.html
@@ -424,7 +428,7 @@ Rules applied:
     data-guard.js     &lt;-- paste here</code></pre>
       </div>
       <div class="step">
-        <h3>Import in your HTML</h3>
+        <h3 data-i18n="step3_title">Import in your HTML</h3>
         <p>Add a script tag with <code>type="module"</code> and import the functions you need.</p>
         <pre><code>&lt;script type="module"&gt;
   import { saveToUrl, loadFromUrl } from './js/url-state.js';
@@ -434,7 +438,7 @@ Rules applied:
         <div class="note">You can also load directly from CDN without downloading:<br><code>import { saveToUrl } from 'https://vbtronic.github.io/web_protocols/packages/url-state/src/index.js';</code></div>
       </div>
       <div class="step">
-        <h3>Use in your code</h3>
+        <h3 data-i18n="step4_title">Use in your code</h3>
         <p>Call the functions wherever you need them. Everything works client-side, no setup required.</p>
         <pre><code>// Save form state to URL for sharing
 document.getElementById('save-btn').onclick = () => {
@@ -455,7 +459,7 @@ if (state) {
 }</code></pre>
       </div>
       <div class="step">
-        <h3>Done — ship it</h3>
+        <h3 data-i18n="step5_title">Done — ship it</h3>
         <p>No build step needed. Works in all modern browsers. Your users get shareable links, customizable UI, or validated storage — depending on which tools you chose.</p>
         <div class="note">Remember: you are free to use these tools in any commercial or personal project. See the Terms section for the full license.</div>
       </div>
@@ -534,7 +538,7 @@ if (!result.saved) {
 
     <div class="help-grid">
       <div class="help-card">
-        <h3>Getting Started</h3>
+        <h3 data-i18n="help_gs">Getting Started</h3>
         <p>The fastest way to use Web Protocols:</p>
         <ul>
           <li>Download the .js file you need (or clone the repo)</li>
@@ -548,7 +552,7 @@ if (!result.saved) {
 &lt;/script&gt;</code></pre>
       </div>
       <div class="help-card">
-        <h3>URL State — Quick Guide</h3>
+        <h3 data-i18n="help_url">URL State — Quick Guide</h3>
         <p>Store and restore state from the URL:</p>
         <ul>
           <li><code>saveToUrl(obj)</code> — saves object to URL</li>
@@ -560,7 +564,7 @@ if (!result.saved) {
         <p>URL parameter key defaults to <code>s</code>. Pass a custom key as the second argument.</p>
       </div>
       <div class="help-card">
-        <h3>Web Editor — Quick Guide</h3>
+        <h3 data-i18n="help_editor">Web Editor — Quick Guide</h3>
         <p>Add a visual CSS editor to any page:</p>
         <ul>
           <li><code>init()</code> — opens the editor panel</li>
@@ -571,7 +575,7 @@ if (!result.saved) {
         <p>Styles are saved per CSS selector in localStorage under the key <code>web-editor-live-styles</code>.</p>
       </div>
       <div class="help-card">
-        <h3>Data Guard — Quick Guide</h3>
+        <h3 data-i18n="help_guard">Data Guard — Quick Guide</h3>
         <p>Validate data before saving:</p>
         <ul>
           <li><code>rule('field', ...checks)</code> — define a rule</li>
@@ -583,7 +587,7 @@ if (!result.saved) {
         <p>Built-in checks: <code>string</code>, <code>number</code>, <code>boolean</code>, <code>email</code>, <code>url</code>, <code>nonempty</code>, <code>array</code>, <code>object</code>, <code>int</code>, <code>positive</code></p>
       </div>
       <div class="help-card">
-        <h3>Browser Compatibility</h3>
+        <h3 data-i18n="help_compat">Browser Compatibility</h3>
         <p>Web Protocols works in all modern browsers:</p>
         <ul>
           <li>Chrome / Edge 80+</li>
@@ -594,7 +598,7 @@ if (!result.saved) {
         <p>No polyfills needed. No transpilation required.</p>
       </div>
       <div class="help-card">
-        <h3>Need More Help?</h3>
+        <h3 data-i18n="help_more">Need More Help?</h3>
         <p>If you run into issues or have questions:</p>
         <ul>
           <li><a href="https://github.com/vbtronic/web_protocols/issues" target="_blank">Open a GitHub Issue</a> — bug reports, feature requests</li>
@@ -628,8 +632,8 @@ if (!result.saved) {
         <div class="faq-a">No. All three tools run 100% client-side. Nothing is ever sent to any server. URL State stores data in the URL bar, Web Editor and Data Guard use localStorage. There are no cookies, no analytics, no tracking.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">What does "Built with open-source AI" mean? <span class="faq-arrow">&#9660;</span></div>
-        <div class="faq-a">The development of Web Protocols was accelerated using open-source AI tools. The code is human-reviewed, tested, and maintained by the author. AI was used as a development aid, not a replacement for quality engineering.</div>
+        <div class="faq-q">What does "Powered by AI" mean? <span class="faq-arrow">&#9660;</span></div>
+        <div class="faq-a">The development of Web Protocols was accelerated using AI tools. The code is human-reviewed, tested, and maintained by the author. AI was used as a development aid, not a replacement for quality engineering.</div>
       </div>
     </div>
   </div>
@@ -647,10 +651,10 @@ if (!result.saved) {
         <p data-i18n="lang_desc">Switch the website language. Your preference is saved to localStorage using Data Guard.</p>
         <div class="lang-grid">
           <button class="lang-btn active" data-lang="en">English</button>
-          <button class="lang-btn" data-lang="cs">Cestina</button>
+          <button class="lang-btn" data-lang="cs">Čeština</button>
           <button class="lang-btn" data-lang="de">Deutsch</button>
-          <button class="lang-btn" data-lang="es">Espanol</button>
-          <button class="lang-btn" data-lang="fr">Francais</button>
+          <button class="lang-btn" data-lang="es">Español</button>
+          <button class="lang-btn" data-lang="fr">Français</button>
         </div>
         <div class="dogfood-note">This language preference is validated and saved using <strong>data-guard-lite</strong> — our own Product 3 in action.</div>
       </div>
@@ -662,14 +666,14 @@ if (!result.saved) {
             <label data-i18n="activate_editor_label">Visual Editor</label><br>
             <span data-i18n="activate_editor_desc">Open the point-and-click CSS editor</span>
           </div>
-          <button class="db" id="settings-editor-btn">Activate</button>
+          <button class="db" id="settings-editor-btn" data-i18n="settings_activate_btn">Activate</button>
         </div>
         <div class="setting-row">
           <div>
             <label data-i18n="reset_styles_label">Reset Customizations</label><br>
             <span data-i18n="reset_styles_desc">Remove all saved style changes</span>
           </div>
-          <button class="db red" id="settings-reset-btn">Reset</button>
+          <button class="db red" id="settings-reset-btn" data-i18n="settings_reset_btn">Reset</button>
         </div>
         <div class="dogfood-note">This section uses <strong>web-editor-live</strong> — our own Product 2. We use our own tools on our own website.</div>
       </div>
@@ -684,14 +688,14 @@ if (!result.saved) {
       <p data-i18n="terms_sub">Simple rules. Use freely, just do not resell or claim as yours.</p>
     </div>
     <div class="terms-content">
-      <h3>What You CAN Do</h3>
+      <h3 data-i18n="terms_can">What You CAN Do</h3>
       <ul>
         <li class="a">Use all tools freely in your personal and commercial projects</li>
         <li class="a">Modify the source code to fit your needs</li>
         <li class="a">Include the tools as part of a larger product, website, or application</li>
         <li class="a">Use in client projects — no attribution required in the UI</li>
       </ul>
-      <h3>What You CANNOT Do</h3>
+      <h3 data-i18n="terms_cannot">What You CANNOT Do</h3>
       <ul>
         <li class="f">Redistribute or publish the tools as a standalone product or library</li>
         <li class="f">Claim authorship — do not present this software as your own creation</li>
@@ -850,76 +854,181 @@ document.getElementById('settings-reset-btn').onclick=()=>{
 
 // ── i18n Language System ──────────────────────────────────────────
 const LANGS={
-en:{settings_title:'Settings',settings_sub:'Customize this website. This section itself uses Web Protocols tools.',
+en:{
+hero_title:'Web Protocols',hero_sub:'Free, open-source JavaScript tools with zero dependencies. Powered by AI. Use in any project — even commercially.',
+badge_free:'Free for Commercial Use',badge_zero:'Zero Dependencies',badge_size:'Under 3 KB each',badge_ai:'Powered by AI',
+btn_demo:'Try Live Demo',btn_download:'Download',btn_github:'View on GitHub',
+nav_products:'Products',nav_demo:'Demo',nav_integrate:'Integrate',nav_download:'Download',nav_help:'Help',nav_settings:'Settings',nav_terms:'Terms',
+products_title:'Three Tools. Zero Dependencies.',products_sub:'Each tool solves one problem perfectly. Use one or all three.',
+p1_title:'URL State Compact',p1_desc:'Save any JavaScript object into the URL with compression. Create shareable links that restore full app state — no backend, no database, just a URL.',
+p2_title:'Web Editor Live',p2_desc:'A visual CSS editor that lets users customize any website. Point-and-click element selection, edit styles, and everything saves to localStorage automatically.',
+p3_title:'Data Guard Lite',p3_desc:'Validate data before saving to localStorage or sessionStorage. Built-in validators for emails, URLs, numbers — plus custom rules and regex support.',
+demo_title:'Try It Live',demo_sub:'No install needed. Everything runs right here in your browser.',
+tab_url:'URL State',tab_editor:'Web Editor',tab_guard:'Data Guard',
+demo_url_title:'URL State — Save Data in the URL',demo_url_desc:'Fill in the fields, click Save to URL, and watch the address bar change. Copy the link and send it to anyone — they will see your exact data.',
+demo_editor_title:'Web Editor — Customize This Page',demo_editor_desc:'Click Activate to open the editor panel. Then click Select in the panel and click any element on this page to customize its styles. Changes persist in localStorage.',
+demo_guard_title:'Data Guard — Validate Before Saving',demo_guard_desc:'Try valid and invalid data. Data Guard checks everything before saving to localStorage.',
+label_name:'Name',label_city:'City',label_favnum:'Favorite Number',label_message:'Message',
+label_email:'Email',label_age:'Age',label_website:'Website',label_username:'Username',
+btn_save_url:'Save to URL',btn_load_url:'Load from URL',btn_copy_link:'Copy Link',
+btn_activate_editor:'Activate Web Editor',btn_reset_styles:'Reset Styles',
+btn_validate:'Validate and Save',btn_read_storage:'Read Storage',btn_clear:'Clear',
+download_title:'Download',download_sub:'Each tool is a single file. Drop it into your project and start using it.',
+dl_clone_text:'Or clone the entire repository:',
+integrate_title:'Integration Protocol',integrate_sub:'Step-by-step guide to add Web Protocols into your website or product.',
+step1_title:'Get the files',step2_title:'Add to your project',step3_title:'Import in your HTML',step4_title:'Use in your code',step5_title:'Done — ship it',
+help_title:'Help Center',help_sub:'Everything you need to get started and troubleshoot.',
+help_gs:'Getting Started',help_url:'URL State — Quick Guide',help_editor:'Web Editor — Quick Guide',help_guard:'Data Guard — Quick Guide',help_compat:'Browser Compatibility',help_more:'Need More Help?',
+faq_title:'Frequently Asked Questions',
+settings_title:'Settings',settings_sub:'Customize this website. This section itself uses Web Protocols tools.',
 lang_title:'Language',lang_desc:'Switch the website language. Your preference is saved to localStorage using Data Guard.',
 appearance_title:'Appearance',appearance_desc:'Customize the look of this website. Uses Web Editor Live under the hood.',
 activate_editor_label:'Visual Editor',activate_editor_desc:'Open the point-and-click CSS editor',
 reset_styles_label:'Reset Customizations',reset_styles_desc:'Remove all saved style changes',
-hero_title:'Web Protocols',hero_sub:'Free, open-source JavaScript tools with zero dependencies. Built with open-source AI. Use in any project — even commercially.',
-nav_products:'Products',nav_demo:'Demo',nav_integrate:'Integrate',nav_download:'Download',nav_help:'Help',nav_settings:'Settings',nav_terms:'Terms',
-products_title:'Three Tools. Zero Dependencies.',products_sub:'Each tool solves one problem perfectly. Use one or all three.',
-demo_title:'Try It Live',demo_sub:'No install needed. Everything runs right here in your browser.',
-download_title:'Download',download_sub:'Each tool is a single file. Drop it into your project and start using it.',
-integrate_title:'Integration Protocol',integrate_sub:'Step-by-step guide to add Web Protocols into your website or product.',
-help_title:'Help Center',help_sub:'Everything you need to get started and troubleshoot.',
+settings_activate_btn:'Activate',settings_reset_btn:'Reset',
 terms_title:'License and Terms',terms_sub:'Simple rules. Use freely, just do not resell or claim as yours.',
-faq_title:'Frequently Asked Questions'},
-cs:{settings_title:'Nastaveni',settings_sub:'Upravte si tento web. Tato sekce sama pouziva nastroje Web Protocols.',
-lang_title:'Jazyk',lang_desc:'Prepnete jazyk webu. Vase preference se ulozi do localStorage pomoci Data Guard.',
-appearance_title:'Vzhled',appearance_desc:'Upravte vzhled tohoto webu. Pouziva Web Editor Live.',
-activate_editor_label:'Vizualni editor',activate_editor_desc:'Otevrete editor pro upravu stylu kliknutim',
-reset_styles_label:'Resetovat upravy',reset_styles_desc:'Odstraните vsechny ulozene zmeny stylu',
-hero_title:'Web Protocols',hero_sub:'Bezplatne open-source JavaScript nastroje bez zavislosti. Postaveno s open-source AI. Pouzijte kdekoliv — i komercne.',
-nav_products:'Produkty',nav_demo:'Ukazka',nav_integrate:'Integrace',nav_download:'Stahnout',nav_help:'Napoveda',nav_settings:'Nastaveni',nav_terms:'Podminky',
-products_title:'Tri nastroje. Zadne zavislosti.',products_sub:'Kazdy nastroj resi jeden problem dokonale. Pouzijte jeden nebo vsechny.',
-demo_title:'Vyzkousejte nazivo',demo_sub:'Zadna instalace. Vse bezi primo v prohlizeci.',
-download_title:'Stahnout',download_sub:'Kazdy nastroj je jeden soubor. Vlozte ho do projektu a pouzivejte.',
-integrate_title:'Protokol integrace',integrate_sub:'Navod krok za krokem jak pridat Web Protocols do vaseho webu nebo produktu.',
-help_title:'Centrum napovedy',help_sub:'Vse co potrebujete pro zacatek a reseni problemu.',
-terms_title:'Licence a podminky',terms_sub:'Jednoducha pravidla. Pouzivejte zdarma, jen neprodavejte a nevydavejte za sve.',
-faq_title:'Casto kladene otazky'},
-de:{settings_title:'Einstellungen',settings_sub:'Passen Sie diese Website an. Dieser Bereich nutzt selbst Web Protocols.',
+terms_can:'What You CAN Do',terms_cannot:'What You CANNOT Do'
+},
+cs:{
+hero_title:'Web Protocols',hero_sub:'Bezplatné open-source JavaScriptové nástroje bez závislostí. Poháněno AI. Použijte kdekoliv — i komerčně.',
+badge_free:'Zdarma i pro komerční použití',badge_zero:'Žádné závislosti',badge_size:'Každý pod 3 KB',badge_ai:'Poháněno AI',
+btn_demo:'Vyzkoušet ukázku',btn_download:'Stáhnout',btn_github:'Zobrazit na GitHubu',
+nav_products:'Produkty',nav_demo:'Ukázka',nav_integrate:'Integrace',nav_download:'Stáhnout',nav_help:'Nápověda',nav_settings:'Nastavení',nav_terms:'Podmínky',
+products_title:'Tři nástroje. Žádné závislosti.',products_sub:'Každý nástroj řeší jeden problém dokonale. Použijte jeden nebo všechny.',
+p1_title:'URL State Compact',p1_desc:'Uložte jakýkoliv JavaScriptový objekt do URL s kompresí. Vytvořte sdílitelné odkazy, které obnoví celý stav aplikace — žádný backend, žádná databáze, jen URL.',
+p2_title:'Web Editor Live',p2_desc:'Vizuální CSS editor, který umožňuje uživatelům upravit jakýkoliv web. Výběr prvků kliknutím, úprava stylů a vše se automaticky ukládá do localStorage.',
+p3_title:'Data Guard Lite',p3_desc:'Validujte data před uložením do localStorage nebo sessionStorage. Vestavěné validátory pro e-maily, URL, čísla — plus vlastní pravidla a podpora regulárních výrazů.',
+demo_title:'Vyzkoušejte naživo',demo_sub:'Žádná instalace. Vše běží přímo v prohlížeči.',
+tab_url:'URL State',tab_editor:'Web Editor',tab_guard:'Data Guard',
+demo_url_title:'URL State — Uložte data do URL',demo_url_desc:'Vyplňte pole, klikněte na Uložit do URL a sledujte, jak se změní adresní řádek. Zkopírujte odkaz a pošlete ho komukoliv — uvidí přesně vaše data.',
+demo_editor_title:'Web Editor — Upravte tuto stránku',demo_editor_desc:'Klikněte na Aktivovat pro otevření editoru. Pak klikněte na Vybrat v panelu a klikněte na jakýkoliv prvek na této stránce pro úpravu jeho stylů.',
+demo_guard_title:'Data Guard — Validace před uložením',demo_guard_desc:'Zkuste platná i neplatná data. Data Guard vše zkontroluje před uložením do localStorage.',
+label_name:'Jméno',label_city:'Město',label_favnum:'Oblíbené číslo',label_message:'Zpráva',
+label_email:'E-mail',label_age:'Věk',label_website:'Web',label_username:'Uživatelské jméno',
+btn_save_url:'Uložit do URL',btn_load_url:'Načíst z URL',btn_copy_link:'Kopírovat odkaz',
+btn_activate_editor:'Aktivovat Web Editor',btn_reset_styles:'Resetovat styly',
+btn_validate:'Validovat a uložit',btn_read_storage:'Číst úložiště',btn_clear:'Vymazat',
+download_title:'Stáhnout',download_sub:'Každý nástroj je jeden soubor. Vložte ho do projektu a používejte.',
+dl_clone_text:'Nebo naklonujte celý repozitář:',
+integrate_title:'Protokol integrace',integrate_sub:'Návod krok za krokem, jak přidat Web Protocols do vašeho webu nebo produktu.',
+step1_title:'Získejte soubory',step2_title:'Přidejte do projektu',step3_title:'Importujte v HTML',step4_title:'Použijte v kódu',step5_title:'Hotovo — nasaďte',
+help_title:'Centrum nápovědy',help_sub:'Vše, co potřebujete pro začátek a řešení problémů.',
+help_gs:'Začínáme',help_url:'URL State — Rychlý průvodce',help_editor:'Web Editor — Rychlý průvodce',help_guard:'Data Guard — Rychlý průvodce',help_compat:'Kompatibilita prohlížečů',help_more:'Potřebujete další pomoc?',
+faq_title:'Často kladené otázky',
+settings_title:'Nastavení',settings_sub:'Upravte si tento web. Tato sekce sama využívá nástroje Web Protocols.',
+lang_title:'Jazyk',lang_desc:'Přepněte jazyk webu. Vaše preference se uloží do localStorage pomocí Data Guard.',
+appearance_title:'Vzhled',appearance_desc:'Upravte vzhled tohoto webu. Využívá Web Editor Live.',
+activate_editor_label:'Vizuální editor',activate_editor_desc:'Otevřete editor pro úpravu stylů kliknutím',
+reset_styles_label:'Resetovat úpravy',reset_styles_desc:'Odstraňte všechny uložené změny stylů',
+settings_activate_btn:'Aktivovat',settings_reset_btn:'Resetovat',
+terms_title:'Licence a podmínky',terms_sub:'Jednoduchá pravidla. Používejte zdarma, jen neprodávejte a nevydávejte za své.',
+terms_can:'Co MŮŽETE dělat',terms_cannot:'Co NEMŮŽETE dělat'
+},
+de:{
+hero_title:'Web Protocols',hero_sub:'Kostenlose Open-Source JavaScript-Tools ohne Abhängigkeiten. Powered by AI. Überall einsetzbar — auch kommerziell.',
+badge_free:'Kostenlos für kommerzielle Nutzung',badge_zero:'Keine Abhängigkeiten',badge_size:'Jeweils unter 3 KB',badge_ai:'Powered by AI',
+btn_demo:'Live-Demo testen',btn_download:'Herunterladen',btn_github:'Auf GitHub ansehen',
+nav_products:'Produkte',nav_demo:'Demo',nav_integrate:'Integration',nav_download:'Download',nav_help:'Hilfe',nav_settings:'Einstellungen',nav_terms:'Bedingungen',
+products_title:'Drei Tools. Null Abhängigkeiten.',products_sub:'Jedes Tool löst ein Problem perfekt. Nutzen Sie eines oder alle.',
+p1_title:'URL State Compact',p1_desc:'Speichern Sie jedes JavaScript-Objekt komprimiert in der URL. Erstellen Sie teilbare Links, die den gesamten App-Zustand wiederherstellen — kein Backend, keine Datenbank, nur eine URL.',
+p2_title:'Web Editor Live',p2_desc:'Ein visueller CSS-Editor, mit dem Benutzer jede Website anpassen können. Element-Auswahl per Klick, Stile bearbeiten und alles wird automatisch in localStorage gespeichert.',
+p3_title:'Data Guard Lite',p3_desc:'Validieren Sie Daten vor dem Speichern in localStorage oder sessionStorage. Eingebaute Validatoren für E-Mails, URLs, Zahlen — plus eigene Regeln und Regex-Unterstützung.',
+demo_title:'Live ausprobieren',demo_sub:'Keine Installation nötig. Alles läuft direkt im Browser.',
+tab_url:'URL State',tab_editor:'Web Editor',tab_guard:'Data Guard',
+demo_url_title:'URL State — Daten in der URL speichern',demo_url_desc:'Füllen Sie die Felder aus, klicken Sie auf Speichern und beobachten Sie die Adressleiste. Kopieren Sie den Link und senden Sie ihn weiter.',
+demo_editor_title:'Web Editor — Diese Seite anpassen',demo_editor_desc:'Klicken Sie auf Aktivieren, um den Editor zu öffnen. Dann wählen Sie ein Element aus und passen Sie seine Stile an.',
+demo_guard_title:'Data Guard — Vor dem Speichern validieren',demo_guard_desc:'Testen Sie gültige und ungültige Daten. Data Guard prüft alles vor dem Speichern in localStorage.',
+label_name:'Name',label_city:'Stadt',label_favnum:'Lieblingszahl',label_message:'Nachricht',
+label_email:'E-Mail',label_age:'Alter',label_website:'Website',label_username:'Benutzername',
+btn_save_url:'In URL speichern',btn_load_url:'Aus URL laden',btn_copy_link:'Link kopieren',
+btn_activate_editor:'Web Editor aktivieren',btn_reset_styles:'Stile zurücksetzen',
+btn_validate:'Validieren und speichern',btn_read_storage:'Speicher lesen',btn_clear:'Löschen',
+download_title:'Download',download_sub:'Jedes Tool ist eine einzelne Datei. Einfach in Ihr Projekt einfügen.',
+dl_clone_text:'Oder das gesamte Repository klonen:',
+integrate_title:'Integrationsprotokoll',integrate_sub:'Schritt-für-Schritt Anleitung zur Integration in Ihre Website oder Ihr Produkt.',
+step1_title:'Dateien herunterladen',step2_title:'Zum Projekt hinzufügen',step3_title:'In HTML importieren',step4_title:'Im Code verwenden',step5_title:'Fertig — ausliefern',
+help_title:'Hilfecenter',help_sub:'Alles was Sie brauchen um loszulegen und Probleme zu lösen.',
+help_gs:'Erste Schritte',help_url:'URL State — Kurzanleitung',help_editor:'Web Editor — Kurzanleitung',help_guard:'Data Guard — Kurzanleitung',help_compat:'Browser-Kompatibilität',help_more:'Brauchen Sie mehr Hilfe?',
+faq_title:'Häufig gestellte Fragen',
+settings_title:'Einstellungen',settings_sub:'Passen Sie diese Website an. Dieser Bereich nutzt selbst Web Protocols.',
 lang_title:'Sprache',lang_desc:'Wechseln Sie die Website-Sprache. Ihre Einstellung wird mit Data Guard in localStorage gespeichert.',
 appearance_title:'Erscheinungsbild',appearance_desc:'Passen Sie das Aussehen dieser Website an. Nutzt Web Editor Live.',
-activate_editor_label:'Visueller Editor',activate_editor_desc:'Offnen Sie den CSS-Editor per Klick',
-reset_styles_label:'Anpassungen zurucksetzen',reset_styles_desc:'Alle gespeicherten Stilanderungen entfernen',
-hero_title:'Web Protocols',hero_sub:'Kostenlose Open-Source JavaScript-Tools ohne Abhangigkeiten. Mit Open-Source KI gebaut. Uberall einsetzbar — auch kommerziell.',
-nav_products:'Produkte',nav_demo:'Demo',nav_integrate:'Integration',nav_download:'Download',nav_help:'Hilfe',nav_settings:'Einstellungen',nav_terms:'Bedingungen',
-products_title:'Drei Tools. Null Abhangigkeiten.',products_sub:'Jedes Tool lost ein Problem perfekt. Nutzen Sie eines oder alle.',
-demo_title:'Live ausprobieren',demo_sub:'Keine Installation notig. Alles lauft direkt im Browser.',
-download_title:'Download',download_sub:'Jedes Tool ist eine einzelne Datei. Einfach in Ihr Projekt einfugen.',
-integrate_title:'Integrationsprotokoll',integrate_sub:'Schritt-fur-Schritt Anleitung zur Integration in Ihre Website oder Ihr Produkt.',
-help_title:'Hilfecenter',help_sub:'Alles was Sie brauchen um loszulegen und Probleme zu losen.',
+activate_editor_label:'Visueller Editor',activate_editor_desc:'Öffnen Sie den CSS-Editor per Klick',
+reset_styles_label:'Anpassungen zurücksetzen',reset_styles_desc:'Alle gespeicherten Stiländerungen entfernen',
+settings_activate_btn:'Aktivieren',settings_reset_btn:'Zurücksetzen',
 terms_title:'Lizenz und Bedingungen',terms_sub:'Einfache Regeln. Frei nutzen, nicht weiterverkaufen oder als eigenes ausgeben.',
-faq_title:'Haufig gestellte Fragen'},
-es:{settings_title:'Configuracion',settings_sub:'Personaliza este sitio web. Esta seccion usa las herramientas de Web Protocols.',
+terms_can:'Was Sie TUN DÜRFEN',terms_cannot:'Was Sie NICHT TUN DÜRFEN'
+},
+es:{
+hero_title:'Web Protocols',hero_sub:'Herramientas JavaScript gratuitas y de código abierto sin dependencias. Powered by AI. Úsalas en cualquier proyecto — incluso comercial.',
+badge_free:'Gratis para uso comercial',badge_zero:'Cero dependencias',badge_size:'Menos de 3 KB cada una',badge_ai:'Powered by AI',
+btn_demo:'Probar demo en vivo',btn_download:'Descargar',btn_github:'Ver en GitHub',
+nav_products:'Productos',nav_demo:'Demo',nav_integrate:'Integrar',nav_download:'Descargar',nav_help:'Ayuda',nav_settings:'Configuración',nav_terms:'Términos',
+products_title:'Tres herramientas. Cero dependencias.',products_sub:'Cada herramienta resuelve un problema a la perfección. Usa una o todas.',
+p1_title:'URL State Compact',p1_desc:'Guarda cualquier objeto JavaScript en la URL con compresión. Crea enlaces compartibles que restauran el estado completo de la app — sin backend, sin base de datos, solo una URL.',
+p2_title:'Web Editor Live',p2_desc:'Un editor CSS visual que permite a los usuarios personalizar cualquier sitio web. Selección de elementos con clic, edición de estilos y todo se guarda automáticamente en localStorage.',
+p3_title:'Data Guard Lite',p3_desc:'Valida datos antes de guardarlos en localStorage o sessionStorage. Validadores integrados para emails, URLs, números — más reglas personalizadas y soporte de regex.',
+demo_title:'Pruébalo en vivo',demo_sub:'Sin instalación. Todo funciona aquí en tu navegador.',
+tab_url:'URL State',tab_editor:'Web Editor',tab_guard:'Data Guard',
+demo_url_title:'URL State — Guardar datos en la URL',demo_url_desc:'Rellena los campos, haz clic en Guardar en URL y observa cómo cambia la barra de direcciones. Copia el enlace y envíalo a cualquier persona.',
+demo_editor_title:'Web Editor — Personaliza esta página',demo_editor_desc:'Haz clic en Activar para abrir el panel del editor. Luego selecciona cualquier elemento de esta página para personalizar sus estilos.',
+demo_guard_title:'Data Guard — Validar antes de guardar',demo_guard_desc:'Prueba datos válidos e inválidos. Data Guard comprueba todo antes de guardar en localStorage.',
+label_name:'Nombre',label_city:'Ciudad',label_favnum:'Número favorito',label_message:'Mensaje',
+label_email:'Correo electrónico',label_age:'Edad',label_website:'Sitio web',label_username:'Nombre de usuario',
+btn_save_url:'Guardar en URL',btn_load_url:'Cargar de URL',btn_copy_link:'Copiar enlace',
+btn_activate_editor:'Activar Web Editor',btn_reset_styles:'Restablecer estilos',
+btn_validate:'Validar y guardar',btn_read_storage:'Leer almacenamiento',btn_clear:'Limpiar',
+download_title:'Descargar',download_sub:'Cada herramienta es un solo archivo. Colócalo en tu proyecto y úsalo.',
+dl_clone_text:'O clona el repositorio completo:',
+integrate_title:'Protocolo de integración',integrate_sub:'Guía paso a paso para agregar Web Protocols a tu sitio web o producto.',
+step1_title:'Obtener los archivos',step2_title:'Añadir al proyecto',step3_title:'Importar en tu HTML',step4_title:'Usar en tu código',step5_title:'Listo — despliega',
+help_title:'Centro de ayuda',help_sub:'Todo lo que necesitas para empezar y solucionar problemas.',
+help_gs:'Primeros pasos',help_url:'URL State — Guía rápida',help_editor:'Web Editor — Guía rápida',help_guard:'Data Guard — Guía rápida',help_compat:'Compatibilidad de navegadores',help_more:'¿Necesitas más ayuda?',
+faq_title:'Preguntas frecuentes',
+settings_title:'Configuración',settings_sub:'Personaliza este sitio web. Esta sección usa las herramientas de Web Protocols.',
 lang_title:'Idioma',lang_desc:'Cambia el idioma del sitio. Tu preferencia se guarda en localStorage con Data Guard.',
 appearance_title:'Apariencia',appearance_desc:'Personaliza el aspecto de este sitio web. Usa Web Editor Live.',
 activate_editor_label:'Editor visual',activate_editor_desc:'Abre el editor CSS con clic',
 reset_styles_label:'Restablecer personalizaciones',reset_styles_desc:'Eliminar todos los cambios de estilo guardados',
-hero_title:'Web Protocols',hero_sub:'Herramientas JavaScript gratuitas y de codigo abierto sin dependencias. Hechas con IA de codigo abierto. Usarlas en cualquier proyecto — incluso comercial.',
-nav_products:'Productos',nav_demo:'Demo',nav_integrate:'Integrar',nav_download:'Descargar',nav_help:'Ayuda',nav_settings:'Configuracion',nav_terms:'Terminos',
-products_title:'Tres herramientas. Cero dependencias.',products_sub:'Cada herramienta resuelve un problema a la perfeccion. Usa una o todas.',
-demo_title:'Pruebalo en vivo',demo_sub:'Sin instalacion. Todo funciona aqui en tu navegador.',
-download_title:'Descargar',download_sub:'Cada herramienta es un solo archivo. Colocalo en tu proyecto y usalo.',
-integrate_title:'Protocolo de integracion',integrate_sub:'Guia paso a paso para agregar Web Protocols a tu sitio web o producto.',
-help_title:'Centro de ayuda',help_sub:'Todo lo que necesitas para empezar y solucionar problemas.',
-terms_title:'Licencia y terminos',terms_sub:'Reglas simples. Usa libremente, no revender ni reclamar como propio.',
-faq_title:'Preguntas frecuentes'},
-fr:{settings_title:'Parametres',settings_sub:'Personnalisez ce site web. Cette section utilise les outils Web Protocols.',
-lang_title:'Langue',lang_desc:'Changez la langue du site. Votre preference est sauvegardee dans localStorage via Data Guard.',
-appearance_title:'Apparence',appearance_desc:"Personnalisez l'apparence de ce site. Utilise Web Editor Live.",
-activate_editor_label:'Editeur visuel',activate_editor_desc:"Ouvrir l'editeur CSS par clic",
-reset_styles_label:'Reinitialiser',reset_styles_desc:'Supprimer toutes les modifications de style',
-hero_title:'Web Protocols',hero_sub:'Outils JavaScript gratuits et open-source sans dependances. Construits avec IA open-source. Utilisables partout — meme commercialement.',
-nav_products:'Produits',nav_demo:'Demo',nav_integrate:'Integration',nav_download:'Telecharger',nav_help:'Aide',nav_settings:'Parametres',nav_terms:'Conditions',
-products_title:'Trois outils. Zero dependance.',products_sub:'Chaque outil resout parfaitement un probleme. Utilisez-en un ou tous.',
-demo_title:'Essayer en direct',demo_sub:"Aucune installation. Tout fonctionne ici dans votre navigateur.",
-download_title:'Telecharger',download_sub:'Chaque outil est un seul fichier. Deposez-le dans votre projet.',
-integrate_title:"Protocole d'integration",integrate_sub:'Guide etape par etape pour ajouter Web Protocols a votre site ou produit.',
-help_title:"Centre d'aide",help_sub:'Tout ce dont vous avez besoin pour demarrer et resoudre les problemes.',
-terms_title:'Licence et conditions',terms_sub:'Regles simples. Utilisez librement, ne revendez pas et ne reclamez pas comme votre creation.',
-faq_title:'Questions frequentes'}
+settings_activate_btn:'Activar',settings_reset_btn:'Restablecer',
+terms_title:'Licencia y términos',terms_sub:'Reglas simples. Usa libremente, no revender ni reclamar como propio.',
+terms_can:'Lo que PUEDES hacer',terms_cannot:'Lo que NO PUEDES hacer'
+},
+fr:{
+hero_title:'Web Protocols',hero_sub:'Outils JavaScript gratuits et open-source sans dépendances. Powered by AI. Utilisables partout — même commercialement.',
+badge_free:'Gratuit pour usage commercial',badge_zero:'Zéro dépendance',badge_size:'Moins de 3 Ko chacun',badge_ai:'Powered by AI',
+btn_demo:'Essayer la démo',btn_download:'Télécharger',btn_github:'Voir sur GitHub',
+nav_products:'Produits',nav_demo:'Démo',nav_integrate:'Intégration',nav_download:'Télécharger',nav_help:'Aide',nav_settings:'Paramètres',nav_terms:'Conditions',
+products_title:'Trois outils. Zéro dépendance.',products_sub:'Chaque outil résout parfaitement un problème. Utilisez-en un ou tous.',
+p1_title:'URL State Compact',p1_desc:'Enregistrez n\'importe quel objet JavaScript dans l\'URL avec compression. Créez des liens partageables qui restaurent l\'état complet de l\'app — pas de backend, pas de base de données, juste une URL.',
+p2_title:'Web Editor Live',p2_desc:'Un éditeur CSS visuel qui permet aux utilisateurs de personnaliser n\'importe quel site web. Sélection d\'éléments par clic, édition de styles, et tout est sauvegardé automatiquement dans localStorage.',
+p3_title:'Data Guard Lite',p3_desc:'Validez les données avant de les sauvegarder dans localStorage ou sessionStorage. Validateurs intégrés pour emails, URLs, nombres — plus des règles personnalisées et le support regex.',
+demo_title:'Essayer en direct',demo_sub:'Aucune installation. Tout fonctionne ici dans votre navigateur.',
+tab_url:'URL State',tab_editor:'Web Editor',tab_guard:'Data Guard',
+demo_url_title:'URL State — Sauvegarder des données dans l\'URL',demo_url_desc:'Remplissez les champs, cliquez sur Sauvegarder et observez la barre d\'adresse changer. Copiez le lien et envoyez-le à n\'importe qui.',
+demo_editor_title:'Web Editor — Personnaliser cette page',demo_editor_desc:'Cliquez sur Activer pour ouvrir le panneau d\'édition. Puis sélectionnez un élément de cette page pour personnaliser ses styles.',
+demo_guard_title:'Data Guard — Valider avant de sauvegarder',demo_guard_desc:'Essayez des données valides et invalides. Data Guard vérifie tout avant de sauvegarder dans localStorage.',
+label_name:'Nom',label_city:'Ville',label_favnum:'Nombre préféré',label_message:'Message',
+label_email:'E-mail',label_age:'Âge',label_website:'Site web',label_username:'Nom d\'utilisateur',
+btn_save_url:'Sauvegarder dans l\'URL',btn_load_url:'Charger de l\'URL',btn_copy_link:'Copier le lien',
+btn_activate_editor:'Activer Web Editor',btn_reset_styles:'Réinitialiser les styles',
+btn_validate:'Valider et sauvegarder',btn_read_storage:'Lire le stockage',btn_clear:'Effacer',
+download_title:'Télécharger',download_sub:'Chaque outil est un seul fichier. Déposez-le dans votre projet.',
+dl_clone_text:'Ou clonez le dépôt complet :',
+integrate_title:'Protocole d\'intégration',integrate_sub:'Guide étape par étape pour ajouter Web Protocols à votre site ou produit.',
+step1_title:'Obtenir les fichiers',step2_title:'Ajouter au projet',step3_title:'Importer dans votre HTML',step4_title:'Utiliser dans votre code',step5_title:'Terminé — déployez',
+help_title:'Centre d\'aide',help_sub:'Tout ce dont vous avez besoin pour démarrer et résoudre les problèmes.',
+help_gs:'Pour commencer',help_url:'URL State — Guide rapide',help_editor:'Web Editor — Guide rapide',help_guard:'Data Guard — Guide rapide',help_compat:'Compatibilité navigateurs',help_more:'Besoin de plus d\'aide ?',
+faq_title:'Questions fréquentes',
+settings_title:'Paramètres',settings_sub:'Personnalisez ce site web. Cette section utilise les outils Web Protocols.',
+lang_title:'Langue',lang_desc:'Changez la langue du site. Votre préférence est sauvegardée dans localStorage via Data Guard.',
+appearance_title:'Apparence',appearance_desc:'Personnalisez l\'apparence de ce site. Utilise Web Editor Live.',
+activate_editor_label:'Éditeur visuel',activate_editor_desc:'Ouvrir l\'éditeur CSS par clic',
+reset_styles_label:'Réinitialiser',reset_styles_desc:'Supprimer toutes les modifications de style',
+settings_activate_btn:'Activer',settings_reset_btn:'Réinitialiser',
+terms_title:'Licence et conditions',terms_sub:'Règles simples. Utilisez librement, ne revendez pas et ne réclamez pas comme votre création.',
+terms_can:'Ce que vous POUVEZ faire',terms_cannot:'Ce que vous NE POUVEZ PAS faire'
+}
 };
 
 function setLang(lang){
