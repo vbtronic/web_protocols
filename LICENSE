@@ -1,13 +1,23 @@
-MIT License
+MIT License (Modified)
 
 Copyright (c) 2026 Viktor Brunclík (vbtronic)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+in the Software with the following conditions:
+
+✅ ALLOWED:
+- Use the Software freely in your websites, apps, and commercial products
+- Modify the Software for your own needs
+- Include the Software as part of a larger product or service
+
+❌ NOT ALLOWED:
+- You may NOT redistribute or publish the Software (or modified versions)
+  as a standalone product or library
+- You may NOT claim authorship or present the Software as your own creation
+- You may NOT sell the Software itself as a standalone commercial product
+
+In short: Use it inside your projects for free. Don't resell it or claim you made it.
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.

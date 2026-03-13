@@ -1,206 +1,293 @@
-<p align="center">
-  <h1 align="center">⚡ Web Protocols</h1>
-  <p align="center">
-    Free, open-source web tools with <b>zero dependencies</b>.<br>
-    Use anywhere — even commercially.
-  </p>
-</p>
+<br>
 
-<p align="center">
-  <a href="https://vbtronic.github.io/web_protocols/"><img src="https://img.shields.io/badge/🌐_Live_Demo-6366f1?style=for-the-badge" alt="Live Demo"></a>
-  <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="MIT License">
-  <img src="https://img.shields.io/badge/dependencies-0-brightgreen?style=for-the-badge" alt="Zero Dependencies">
-  <img src="https://img.shields.io/badge/size-<3KB_each-blue?style=for-the-badge" alt="Size">
-</p>
+<div align="center">
 
----
+# Web Protocols
 
-## 📦 Three Tools, One Repo
+**Free, open-source JavaScript tools with zero dependencies.**
+**Built with open-source AI. Use anywhere — even commercially.**
 
-| Package | Description | Size |
-|---------|-------------|------|
-| **[url-state-compact](#-url-state)** | Save app state in the URL with LZ compression | ~2 KB |
-| **[web-editor-live](#-web-editor)** | Visual CSS editor for any website, saves to localStorage | ~3 KB |
-| **[data-guard-lite](#-data-guard)** | Validate data before saving to storage | ~1 KB |
+<br>
 
-> 🎮 **[Try the live demo →](https://vbtronic.github.io/web_protocols/)**
+[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-6366f1?style=for-the-badge&logoColor=white)](https://vbtronic.github.io/web_protocols/)
+[![License](https://img.shields.io/badge/LICENSE-Modified_MIT-22c55e?style=for-the-badge)](LICENSE)
+![Dependencies](https://img.shields.io/badge/DEPENDENCIES-0-22c55e?style=for-the-badge)
+![Size](https://img.shields.io/badge/SIZE-Under_3KB_each-6366f1?style=for-the-badge)
+
+<br>
+
+[Live Demo](https://vbtronic.github.io/web_protocols/) · [Download](https://vbtronic.github.io/web_protocols/#download) · [Help](https://vbtronic.github.io/web_protocols/#help) · [Terms](https://vbtronic.github.io/web_protocols/#terms)
+
+</div>
+
+<br>
 
 ---
 
-## 📦 URL State
+<br>
 
-Save any JavaScript object into the URL. Share links that restore full app state — **no backend needed**.
+## What is Web Protocols?
+
+Three lightweight JavaScript tools that solve common web problems. No npm, no build tools, no dependencies. Just download and use.
+
+| Package | What it does | Size |
+|:--------|:-------------|:-----|
+| **url-state-compact** | Save app state in the URL with compression | ~2 KB |
+| **web-editor-live** | Visual CSS editor for any website | ~3 KB |
+| **data-guard-lite** | Validate data before saving to storage | ~1 KB |
+
+<br>
+
+---
+
+<br>
+
+## URL State Compact
+
+Save any JavaScript object into the URL. Create shareable links that restore full app state — no backend needed.
 
 ```js
-import { saveToUrl, loadFromUrl, createUrl } from './packages/url-state/src/index.js';
+import { saveToUrl, loadFromUrl, createUrl } from './url-state/src/index.js';
 
-// Save current state to URL
+// Save state to the current URL
 saveToUrl({ name: 'Viktor', score: 100, level: 5 });
+// URL becomes: https://yoursite.com?s=compressed_data
 
 // Load it back
 const state = loadFromUrl();
-// → { name: 'Viktor', score: 100, level: 5 }
+// { name: 'Viktor', score: 100, level: 5 }
 
-// Create a shareable link
+// Build a shareable link
 const link = createUrl('https://myapp.com', { filter: 'new', page: 3 });
-// → https://myapp.com?s=compressed_data
+// https://myapp.com?s=compressed_data
 ```
 
-### API
+<details>
+<summary><strong>Full API Reference</strong></summary>
 
-| Function | Description |
-|----------|-------------|
-| `encodeState(obj)` | Compress object to URI-safe string |
-| `decodeState(str)` | Decompress string back to object |
-| `saveToUrl(obj, key?)` | Save state to current URL |
-| `loadFromUrl(key?)` | Load state from current URL |
-| `createUrl(baseUrl, obj, key?)` | Build a shareable URL |
+<br>
 
-### Use Cases
-- 🔗 Shareable filter/search states
-- 📋 Form data that survives page refresh
-- 🎮 Game save states in URLs
-- 📊 Dashboard configurations as links
+| Function | Parameters | Returns | Description |
+|:---------|:-----------|:--------|:------------|
+| `encodeState` | `obj` | `string` | Compress object to URI-safe string |
+| `decodeState` | `str` | `object \| null` | Decompress string back to object |
+| `saveToUrl` | `obj, key?` | `string` | Save state to current URL, returns URL |
+| `loadFromUrl` | `key?` | `object \| null` | Load state from current URL |
+| `createUrl` | `baseUrl, obj, key?` | `string` | Build a new URL with embedded state |
+
+Default key is `s`. Pass a custom key to use multiple state params.
+
+</details>
+
+**Use cases:** shareable filters, form data persistence, game saves in URLs, dashboard configs as links
+
+<br>
 
 ---
 
-## 🎨 Web Editor
+<br>
 
-Let users customize any website's appearance. Changes persist in localStorage.
+## Web Editor Live
+
+Let users customize any website's appearance. Point-and-click to select elements, change styles, everything saves to localStorage.
 
 ```js
-import { init, applySaved, clearStyles } from './packages/web-editor/src/index.js';
+import { init, applySaved, clearStyles } from './web-editor/src/index.js';
 
-// Show the visual editor panel
+// Open the visual editor panel
 init();
 
-// Just apply saved styles (no panel)
+// Apply saved styles on page load (no panel)
 applySaved();
 
-// Reset everything
+// Reset all customizations
 clearStyles();
 ```
 
-### Features
-- 🖱️ Point-and-click element selection
-- 🎨 Edit colors, fonts, spacing, borders, opacity
-- 💾 Auto-saves to localStorage
-- 🔌 Works on any website
+<details>
+<summary><strong>Full API Reference</strong></summary>
 
-### As a Bookmarklet
+<br>
+
+| Function | Description |
+|:---------|:------------|
+| `init()` | Opens the editor panel and applies saved styles |
+| `applySaved()` | Applies saved styles without showing the panel |
+| `getStyles()` | Returns all stored style overrides as an object |
+| `clearStyles()` | Removes all saved styles from localStorage |
+
+Editable properties: color, background-color, font-size, font-weight, padding, margin, border-radius, border, opacity, display, visibility.
+
+</details>
+
+**Use as a bookmarklet:**
 ```
 javascript:void(import('https://vbtronic.github.io/web_protocols/packages/web-editor/src/index.js').then(m=>m.init()))
 ```
 
+<br>
+
 ---
 
-## 🛡️ Data Guard
+<br>
 
-Validate data before it hits localStorage. Never save garbage again.
+## Data Guard Lite
+
+Validate data before it hits localStorage. Define rules, run checks, never save bad data.
 
 ```js
-import { rule, guardedSet, createGuard } from './packages/data-guard/src/index.js';
+import { rule, guardedSet, createGuard, addValidator } from './data-guard/src/index.js';
 
-// Define rules
+// Define validation rules
 const rules = [
   rule('email', 'email', 'nonempty'),
   rule('age', 'positive', 'int'),
   rule('website', 'url'),
 ];
 
-// Validate & save in one step
-const result = guardedSet('user-profile', {
+// Validate and save in one step
+const result = guardedSet('user', {
   email: 'viktor@example.com',
   age: 11,
   website: 'https://github.com/vbtronic'
 }, rules);
+// { saved: true, errors: [] }
 
-console.log(result);
-// → { saved: true, errors: [] }
-```
+// Create a reusable guarded store
+const store = createGuard(rules);
+store.set('profile', { email: 'bad', age: -1, website: 'nope' });
+// { saved: false, errors: [...] }
 
-### Built-in Validators
-
-| Validator | Checks |
-|-----------|--------|
-| `string` | Is a string |
-| `number` | Is a number (not NaN) |
-| `boolean` | Is true or false |
-| `email` | Valid email format |
-| `url` | Valid URL |
-| `nonempty` | Not null, undefined, or empty string |
-| `array` | Is an array |
-| `object` | Is a plain object |
-| `int` | Is an integer |
-| `positive` | Is a positive number |
-
-### Custom Validators
-
-```js
-import { addValidator, rule, guardedSet } from './packages/data-guard/src/index.js';
-
-// Add your own
+// Add custom validators
 addValidator('teen', v => v >= 13 && v <= 19);
 addValidator('czechPhone', v => /^\+420\d{9}$/.test(v));
-
-// Use regex directly in rules
-const rules = [
-  rule('username', 'nonempty', /^[a-z0-9_]{3,20}$/),
-  rule('age', 'teen'),
-];
 ```
+
+<details>
+<summary><strong>Built-in Validators</strong></summary>
+
+<br>
+
+| Name | Checks |
+|:-----|:-------|
+| `string` | Value is a string |
+| `number` | Value is a number (not NaN) |
+| `boolean` | Value is true or false |
+| `email` | Valid email format |
+| `url` | Valid URL format |
+| `nonempty` | Not null, undefined, or empty string |
+| `array` | Value is an array |
+| `object` | Value is a plain object |
+| `int` | Value is an integer |
+| `positive` | Value is a positive number |
+
+You can also use **RegExp** directly in rules: `rule('username', /^[a-z0-9_]{3,20}$/)`
+
+</details>
+
+<br>
 
 ---
 
-## 🚀 Quick Start
+<br>
 
-No install needed. Just copy the file you need:
+## Quick Start
+
+No install needed. Each tool is a single JavaScript file.
+
+**Option 1 — Download**
+
+Visit the [download page](https://vbtronic.github.io/web_protocols/#download) and grab the files you need.
+
+**Option 2 — Clone**
 
 ```bash
-# Clone the repo
 git clone https://github.com/vbtronic/web_protocols.git
-
-# Use directly in your HTML
-<script type="module">
-  import { saveToUrl } from './packages/url-state/src/index.js';
-</script>
 ```
 
-Or use from CDN (GitHub Pages):
+**Option 3 — CDN (GitHub Pages)**
+
 ```html
 <script type="module">
   import { saveToUrl } from 'https://vbtronic.github.io/web_protocols/packages/url-state/src/index.js';
+  import { init } from 'https://vbtronic.github.io/web_protocols/packages/web-editor/src/index.js';
+  import { rule, guardedSet } from 'https://vbtronic.github.io/web_protocols/packages/data-guard/src/index.js';
 </script>
 ```
 
+<br>
+
 ---
 
-## 📁 Project Structure
+<br>
+
+## Project Structure
 
 ```
 web_protocols/
 ├── packages/
-│   ├── url-state/        # State-in-URL with compression
-│   ├── web-editor/       # Visual CSS editor
-│   └── data-guard/       # Storage validation
-├── docs/                 # Live demo (GitHub Pages)
-├── LICENSE               # MIT
+│   ├── url-state/        State-in-URL with compression
+│   │   └── src/index.js
+│   ├── web-editor/       Visual CSS editor
+│   │   └── src/index.js
+│   └── data-guard/       Storage validation
+│       └── src/index.js
+├── docs/                 Live demo site (GitHub Pages)
+├── LICENSE               Modified MIT
 └── README.md
 ```
 
----
-
-## 🤝 Contributing
-
-PRs welcome! Feel free to:
-- Add new validators to Data Guard
-- Improve the Web Editor UI
-- Add framework wrappers (React, Vue, Svelte)
+<br>
 
 ---
 
-## 📄 License
+<br>
 
-**MIT** — free for personal and commercial use.
+## Built with Open-Source AI
 
-Made with ❤️ by [vbtronic](https://github.com/vbtronic)
+Web Protocols was developed with the help of open-source AI tools. All code is human-reviewed, tested, and maintained. AI accelerates development — it does not replace quality engineering.
+
+<br>
+
+---
+
+<br>
+
+## License
+
+**Modified MIT License** — free for personal and commercial use.
+
+**You can:** use in any project, modify the code, include in commercial products.
+
+**You cannot:** resell as a standalone product, claim authorship, remove copyright notices.
+
+See [LICENSE](LICENSE) for full details. See [Terms](https://vbtronic.github.io/web_protocols/#terms) on the website.
+
+<br>
+
+---
+
+<br>
+
+## Contributing
+
+PRs welcome. Ideas for contributions:
+- New built-in validators for Data Guard
+- Web Editor UI improvements
+- Framework wrappers (React, Vue, Svelte)
+- Performance improvements
+- Documentation and examples
+
+<br>
+
+---
+
+<br>
+
+<div align="center">
+
+Made by [vbtronic](https://github.com/vbtronic)
+
+[Live Demo](https://vbtronic.github.io/web_protocols/) · [Download](https://vbtronic.github.io/web_protocols/#download) · [Help](https://vbtronic.github.io/web_protocols/#help) · [GitHub](https://github.com/vbtronic/web_protocols)
+
+</div>
