@@ -1,0 +1,14 @@
+{
+  "name": "web-editor-live",
+  "version": "1.0.0",
+  "description": "Universal visual web editor. Customize any website's appearance and save changes to localStorage. Zero dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "license": "MIT",
+  "keywords": ["editor", "css", "visual", "customizer", "localStorage", "theme"],
+  "author": "Viktor Brunclík <vbtronic>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vbtronic/web_protocols"
+  }
+}

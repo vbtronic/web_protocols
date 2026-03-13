@@ -1,0 +1,14 @@
+{
+  "name": "data-guard-lite",
+  "version": "1.0.0",
+  "description": "Lightweight data validation before saving to localStorage/sessionStorage. Custom rules, zero dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "license": "MIT",
+  "keywords": ["validation", "localStorage", "data-guard", "storage", "validate"],
+  "author": "Viktor Brunclík <vbtronic>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vbtronic/web_protocols"
+  }
+}

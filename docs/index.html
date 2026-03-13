@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Protocols – Free Open-Source Web Tools</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0f; --card: #12121a; --accent: #6366f1; --accent2: #a855f7;
+      --text: #e0e0e0; --dim: #888; --green: #22c55e; --border: #1e1e2e; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text);
+      line-height: 1.6; min-height: 100vh; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 80px 20px 40px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(99,102,241,.08) 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; position: relative; }
+    .hero p { font-size: 1.1rem; color: var(--dim); max-width: 600px; margin: 12px auto 24px; position: relative; }
+    .badge { display: inline-block; background: var(--accent); color: #fff; font-size: .75rem;
+      padding: 4px 12px; border-radius: 99px; font-weight: 600; margin: 4px; }
+
+    /* Tabs */
+    .tabs { display: flex; justify-content: center; gap: 8px; padding: 0 20px; flex-wrap: wrap; }
+    .tab { padding: 10px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: .9rem;
+      border: 1px solid var(--border); background: var(--card); transition: .2s; }
+    .tab:hover, .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* Sections */
+    .section { max-width: 800px; margin: 40px auto; padding: 0 20px; display: none; }
+    .section.active { display: block; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 16px 0; }
+    .card h3 { color: var(--accent); margin-bottom: 8px; }
+    pre { background: #0d0d15; border: 1px solid var(--border); border-radius: 8px; padding: 16px;
+      overflow-x: auto; font-size: .85rem; line-height: 1.6; }
+    code { font-family: 'Fira Code', 'SF Mono', monospace; }
+
+    /* Demo */
+    .demo-box { background: #0d0d15; border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 16px 0; }
+    .demo-box h3 { color: var(--green); margin-bottom: 12px; }
+    input, textarea { width: 100%; padding: 10px; background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text); font-size: .9rem; margin: 4px 0 12px; }
+    button { padding: 10px 20px; background: var(--accent); color: #fff; border: none; border-radius: 6px;
+      cursor: pointer; font-weight: 600; font-size: .9rem; margin: 4px; transition: .2s; }
+    button:hover { background: var(--accent2); }
+    .output { margin-top: 12px; padding: 12px; background: var(--card); border-radius: 6px;
+      font-family: monospace; font-size: .8rem; word-break: break-all; min-height: 40px; }
+    .footer { text-align: center; padding: 40px 20px; color: var(--dim); font-size: .85rem; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="hero">
+  <h1>⚡ Web Protocols</h1>
+  <p>Free, open-source web tools with zero dependencies. Use anywhere — even commercially.</p>
+  <span class="badge">MIT License</span>
+  <span class="badge">Zero Dependencies</span>
+  <span class="badge">< 3 KB each</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="url-state">📦 URL State</div>
+  <div class="tab" data-tab="web-editor">🎨 Web Editor</div>
+  <div class="tab" data-tab="data-guard">🛡️ Data Guard</div>
+</div>
+
+<!-- URL STATE -->
+<div class="section active" id="url-state">
+  <div class="card">
+    <h3>What is URL State?</h3>
+    <p>Save any JavaScript object into the URL with LZ compression. Share links that restore full app state — no backend needed.</p>
+  </div>
+  <div class="demo-box">
+    <h3>▶ Live Demo</h3>
+    <label>Name <input type="text" id="us-name" placeholder="Your name"></label>
+    <label>City <input type="text" id="us-city" placeholder="Your city"></label>
+    <label>Score <input type="number" id="us-score" placeholder="42"></label>
+    <button id="us-save">Save to URL</button>
+    <button id="us-load">Load from URL</button>
+    <button id="us-share">Copy Shareable Link</button>
+    <div class="output" id="us-output">Enter some data and click "Save to URL"</div>
+  </div>
+  <div class="card">
+    <h3>Usage</h3>
+    <pre><code>import { saveToUrl, loadFromUrl } from './packages/url-state/src/index.js';
+
+// Save state to URL
+saveToUrl({ name: 'Viktor', score: 100 });
+
+// Load it back
+const state = loadFromUrl();
+console.log(state); // { name: 'Viktor', score: 100 }</code></pre>
+  </div>
+</div>
+
+<!-- WEB EDITOR -->
+<div class="section" id="web-editor">
+  <div class="card">
+    <h3>What is Web Editor?</h3>
+    <p>A visual CSS editor that lets users customize any website's appearance. Changes are saved to localStorage and persist across visits.</p>
+  </div>
+  <div class="demo-box">
+    <h3>▶ Live Demo</h3>
+    <p>Click the button below to activate the editor on <strong>this page</strong>. Then click "Select" in the panel and click any element to style it.</p>
+    <button id="we-activate">🎨 Activate Web Editor</button>
+  </div>
+  <div class="card">
+    <h3>Usage</h3>
+    <pre><code>import { init } from './packages/web-editor/src/index.js';
+
+// Activate the visual editor panel
+init();
+
+// Or just apply saved styles silently
+import { applySaved } from './packages/web-editor/src/index.js';
+applySaved();</code></pre>
+  </div>
+</div>
+
+<!-- DATA GUARD -->
+<div class="section" id="data-guard">
+  <div class="card">
+    <h3>What is Data Guard?</h3>
+    <p>Validates data before saving to localStorage or sessionStorage. Define custom rules and never save bad data again.</p>
+  </div>
+  <div class="demo-box">
+    <h3>▶ Live Demo</h3>
+    <label>Email <input type="text" id="dg-email" placeholder="user@example.com"></label>
+    <label>Age <input type="number" id="dg-age" placeholder="25"></label>
+    <label>Website <input type="text" id="dg-url" placeholder="https://example.com"></label>
+    <button id="dg-save">Validate & Save</button>
+    <button id="dg-read">Read from Storage</button>
+    <div class="output" id="dg-output">Enter data and click "Validate & Save"</div>
+  </div>
+  <div class="card">
+    <h3>Usage</h3>
+    <pre><code>import { rule, guardedSet } from './packages/data-guard/src/index.js';
+
+const rules = [
+  rule('email', 'email', 'nonempty'),
+  rule('age', 'positive', 'int'),
+  rule('url', 'url'),
+];
+
+const result = guardedSet('user', { email: 'a@b.c', age: 25, url: 'https://x.com' }, rules);
+console.log(result); // { saved: true, errors: [] }</code></pre>
+  </div>
+</div>
+
+<div class="footer">
+  Made with ❤️ by <a href="https://github.com/vbtronic">vbtronic</a> · 
+  <a href="https://github.com/vbtronic/web_protocols">GitHub</a> · MIT License
+</div>
+
+<script type="module">
+// ── Tab switching ─────────────────────────────────────────────────
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ── URL State Demo ────────────────────────────────────────────────
+// Inline minimal version for the demo (so it works on GitHub Pages without build)
+function lzCompress(s) {
+  try { return btoa(unescape(encodeURIComponent(s))); } catch { return btoa(s); }
+}
+function lzDecompress(s) {
+  try { return decodeURIComponent(escape(atob(s))); } catch { return atob(s); }
+}
+function encodeState(obj) { return lzCompress(JSON.stringify(obj)); }
+function decodeState(str) { try { return JSON.parse(lzDecompress(str)); } catch { return null; } }
+
+document.getElementById('us-save').onclick = () => {
+  const state = {
+    name: document.getElementById('us-name').value,
+    city: document.getElementById('us-city').value,
+    score: Number(document.getElementById('us-score').value) || 0,
+  };
+  const encoded = encodeState(state);
+  const url = new URL(window.location);
+  url.searchParams.set('s', encoded);
+  window.history.replaceState(null, '', url);
+  document.getElementById('us-output').textContent =
+    `✅ Saved! URL param "s" = ${encoded}\n\nFull URL length: ${url.toString().length} chars\nOriginal JSON: ${JSON.stringify(state).length} chars | Encoded: ${encoded.length} chars`;
+};
+
+document.getElementById('us-load').onclick = () => {
+  const url = new URL(window.location);
+  const val = url.searchParams.get('s');
+  if (!val) { document.getElementById('us-output').textContent = '⚠️ No state in URL yet. Save first!'; return; }
+  const state = decodeState(val);
+  if (state) {
+    document.getElementById('us-name').value = state.name || '';
+    document.getElementById('us-city').value = state.city || '';
+    document.getElementById('us-score').value = state.score || '';
+    document.getElementById('us-output').textContent = `✅ Loaded: ${JSON.stringify(state, null, 2)}`;
+  }
+};
+
+document.getElementById('us-share').onclick = () => {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    document.getElementById('us-output').textContent = `📋 Link copied!\n${url}`;
+  });
+};
+
+// Load state from URL on page load
+window.addEventListener('load', () => {
+  const url = new URL(window.location);
+  const val = url.searchParams.get('s');
+  if (val) {
+    const state = decodeState(val);
+    if (state) {
+      document.getElementById('us-name').value = state.name || '';
+      document.getElementById('us-city').value = state.city || '';
+      document.getElementById('us-score').value = state.score || '';
+      document.getElementById('us-output').textContent = `✅ State loaded from URL: ${JSON.stringify(state, null, 2)}`;
+    }
+  }
+});
+
+// ── Web Editor Demo ───────────────────────────────────────────────
+document.getElementById('we-activate').onclick = async () => {
+  const { init } = await import('../packages/web-editor/src/index.js');
+  init();
+};
+
+// ── Data Guard Demo ───────────────────────────────────────────────
+const DG_VALIDATORS = {
+  string: v => typeof v === 'string',
+  number: v => typeof v === 'number' && !isNaN(v),
+  email: v => typeof v === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+  url: v => { try { new URL(v); return true; } catch { return false; } },
+  nonempty: v => v !== null && v !== undefined && v !== '',
+  positive: v => typeof v === 'number' && v > 0,
+  int: v => Number.isInteger(v),
+};
+
+document.getElementById('dg-save').onclick = () => {
+  const data = {
+    email: document.getElementById('dg-email').value,
+    age: Number(document.getElementById('dg-age').value),
+    url: document.getElementById('dg-url').value,
+  };
+  const rules = [
+    { field: 'email', checks: ['email', 'nonempty'] },
+    { field: 'age', checks: ['positive', 'int'] },
+    { field: 'url', checks: ['url'] },
+  ];
+  const errors = [];
+  for (const r of rules) {
+    for (const check of r.checks) {
+      const fn = DG_VALIDATORS[check];
+      if (fn && !fn(data[r.field])) {
+        errors.push(`${r.field} failed "${check}" check`);
+      }
+    }
+  }
+  const out = document.getElementById('dg-output');
+  if (errors.length === 0) {
+    localStorage.setItem('data-guard-demo', JSON.stringify(data));
+    out.textContent = `✅ All valid! Saved to localStorage.\n${JSON.stringify(data, null, 2)}`;
+  } else {
+    out.textContent = `❌ Validation failed:\n${errors.map(e => '  • ' + e).join('\n')}`;
+  }
+};
+
+document.getElementById('dg-read').onclick = () => {
+  const stored = localStorage.getItem('data-guard-demo');
+  document.getElementById('dg-output').textContent = stored
+    ? `📦 Stored data:\n${JSON.stringify(JSON.parse(stored), null, 2)}`
+    : '⚠️ Nothing saved yet.';
+};
+</script>
+
+</body>
+</html>

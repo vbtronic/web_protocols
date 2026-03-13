@@ -1,0 +1,14 @@
+{
+  "name": "url-state-compact",
+  "version": "1.0.0",
+  "description": "Lightweight state-in-URL storage with LZ compression. Save & share app state via links. Zero dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "license": "MIT",
+  "keywords": ["url", "state", "query-params", "compression", "shareable-links", "lz-string", "no-backend"],
+  "author": "Viktor Brunclík <vbtronic>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vbtronic/web_protocols"
+  }
+}
