@@ -759,27 +759,25 @@ document.getElementById('mobile-toggle').addEventListener('click',()=>{
   l.style.borderRadius='0 0 12px 12px';l.style.border='1px solid var(--border)';
 });
 
-// URL State Demo
-function enc(s){try{return btoa(unescape(encodeURIComponent(s)))}catch{return btoa(s)}}
-function dec(s){try{return decodeURIComponent(escape(atob(s)))}catch{try{return atob(s)}catch{return null}}}
-function encS(o){return enc(JSON.stringify(o))}
-function decS(s){try{return JSON.parse(dec(s))}catch{return null}}
+// URL State Demo — uses the real url-state library
+import { encodeState, decodeState } from './js/url-state.js';
 
 document.getElementById('us-save').onclick=()=>{
   const s={name:document.getElementById('us-name').value,city:document.getElementById('us-city').value,
     num:Number(document.getElementById('us-score').value)||0,msg:document.getElementById('us-msg').value};
-  const e=encS(s),u=new URL(window.location);
+  const e=encodeState(s),u=new URL(window.location);
   u.searchParams.set('s',e);window.history.replaceState(null,'',u);
   document.getElementById('us-output').textContent=
-    `Saved to URL!\n\nOriginal JSON: ${JSON.stringify(s).length} chars\nEncoded: ${e.length} chars\nParam: ?s=${e}\n\nURL length: ${u.toString().length} chars`;
+    `Saved to URL!\n\nOriginal JSON: ${JSON.stringify(s).length} chars\nCompressed: ${e.length} chars\nParam: ?s=${e}\n\nURL length: ${u.toString().length} chars`;
 };
 document.getElementById('us-load').onclick=()=>{
   const v=new URL(window.location).searchParams.get('s');
   if(!v){document.getElementById('us-output').textContent='No state in URL. Save first.';return}
-  const s=decS(v);
+  const s=decodeState(v);
   if(s){document.getElementById('us-name').value=s.name||'';document.getElementById('us-city').value=s.city||'';
     document.getElementById('us-score').value=s.num||'';document.getElementById('us-msg').value=s.msg||'';
     document.getElementById('us-output').textContent=`Loaded:\n${JSON.stringify(s,null,2)}`}
+  else{document.getElementById('us-output').textContent='Could not decode state from URL.'}
 };
 document.getElementById('us-share').onclick=()=>{
   navigator.clipboard.writeText(window.location.href)
@@ -789,7 +787,7 @@ document.getElementById('us-share').onclick=()=>{
 
 // Auto-load from URL
 const uv=new URL(window.location).searchParams.get('s');
-if(uv){const st=decS(uv);if(st){
+if(uv){const st=decodeState(uv);if(st){
   document.getElementById('us-name').value=st.name||'';document.getElementById('us-city').value=st.city||'';
   document.getElementById('us-score').value=st.num||'';document.getElementById('us-msg').value=st.msg||'';
   document.getElementById('us-output').textContent=`State loaded from URL:\n${JSON.stringify(st,null,2)}`;
