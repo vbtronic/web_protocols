@@ -16,7 +16,7 @@
 
 <br>
 
-[Live Demo](https://vbtronic.github.io/web_protocols/) · [Download](https://vbtronic.github.io/web_protocols/#download) · [Help](https://vbtronic.github.io/web_protocols/#help) · [Terms](https://vbtronic.github.io/web_protocols/#terms)
+[Live Demo](https://vbtronic.github.io/web_protocols/) · [Integrate](https://vbtronic.github.io/web_protocols/#integrate) · [Download](https://vbtronic.github.io/web_protocols/#download) · [Help](https://vbtronic.github.io/web_protocols/#help) · [Terms](https://vbtronic.github.io/web_protocols/#terms)
 
 </div>
 
@@ -288,6 +288,6 @@ PRs welcome. Ideas for contributions:
 
 Made by [vbtronic](https://github.com/vbtronic)
 
-[Live Demo](https://vbtronic.github.io/web_protocols/) · [Download](https://vbtronic.github.io/web_protocols/#download) · [Help](https://vbtronic.github.io/web_protocols/#help) · [GitHub](https://github.com/vbtronic/web_protocols)
+[Live Demo](https://vbtronic.github.io/web_protocols/) · [Integrate](https://vbtronic.github.io/web_protocols/#integrate) · [Download](https://vbtronic.github.io/web_protocols/#download) · [Help](https://vbtronic.github.io/web_protocols/#help) · [GitHub](https://github.com/vbtronic/web_protocols)
 
 </div>

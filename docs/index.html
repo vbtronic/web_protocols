@@ -134,6 +134,34 @@
     .scroll-top.visible{opacity:1}
     .ai-badge{background:linear-gradient(135deg,var(--accent),var(--accent2));padding:2px 10px;border-radius:6px;
       font-size:.7rem;font-weight:700;color:#fff;margin-left:6px;letter-spacing:.03em}
+
+    .steps{counter-reset:step}
+    .step{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 28px 28px 72px;
+      margin:16px 0;position:relative;counter-increment:step;transition:.3s}
+    .step:hover{border-color:var(--accent);box-shadow:0 8px 40px rgba(99,102,241,.1)}
+    .step::before{content:counter(step);position:absolute;left:20px;top:24px;width:36px;height:36px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;
+      display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;
+      line-height:36px;text-align:center}
+    .step h3{font-size:1rem;font-weight:700;margin-bottom:6px;color:var(--accent3)}
+    .step p{color:var(--dim);font-size:.88rem;margin:4px 0}
+    .step pre{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;
+      font-size:.78rem;overflow-x:auto;line-height:1.6;margin:10px 0 0}
+    .step code{font-family:'JetBrains Mono',monospace}
+    .step .note{background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);border-radius:8px;
+      padding:10px 14px;margin-top:10px;font-size:.82rem;color:var(--accent3)}
+
+    .protocol-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:32px 0}
+    @media(max-width:900px){.protocol-grid{grid-template-columns:1fr}}
+    .protocol-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+    .protocol-card h4{font-size:.95rem;font-weight:700;margin-bottom:8px;color:#fff}
+    .protocol-card p{color:var(--dim);font-size:.85rem;margin-bottom:10px}
+    .protocol-card pre{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;
+      font-size:.72rem;overflow-x:auto;line-height:1.5}
+    .protocol-card code{font-family:'JetBrains Mono',monospace}
+
+    .glow-line{height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);
+      margin:60px 0;opacity:.4}
   </style>
 </head>
 <body>
@@ -145,6 +173,7 @@
     <div class="links" id="nav-links">
       <a href="#products">Products</a>
       <a href="#demo">Demo</a>
+      <a href="#integrate">Integrate</a>
       <a href="#download">Download</a>
       <a href="#help">Help</a>
       <a href="#terms">Terms</a>
@@ -341,6 +370,134 @@ Rules applied:
   </div>
 </section>
 
+<section id="integrate">
+  <div class="container">
+    <div class="section-title">
+      <h2>Integration Protocol</h2>
+      <p>Step-by-step guide to add Web Protocols into your website or product.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <h3>Get the files</h3>
+        <p>Download only the tools you need, or clone the whole repo. Each tool is a single .js file.</p>
+        <pre><code>git clone https://github.com/vbtronic/web_protocols.git
+
+# or download individual files from the Download section
+# or use CDN links directly</code></pre>
+      </div>
+      <div class="step">
+        <h3>Add to your project</h3>
+        <p>Copy the .js file into your project folder. No npm install, no build step.</p>
+        <pre><code>your-project/
+  index.html
+  js/
+    url-state.js      &lt;-- paste here
+    web-editor.js     &lt;-- paste here
+    data-guard.js     &lt;-- paste here</code></pre>
+      </div>
+      <div class="step">
+        <h3>Import in your HTML</h3>
+        <p>Add a script tag with <code>type="module"</code> and import the functions you need.</p>
+        <pre><code>&lt;script type="module"&gt;
+  import { saveToUrl, loadFromUrl } from './js/url-state.js';
+  import { init } from './js/web-editor.js';
+  import { rule, guardedSet } from './js/data-guard.js';
+&lt;/script&gt;</code></pre>
+        <div class="note">You can also load directly from CDN without downloading:<br><code>import { saveToUrl } from 'https://vbtronic.github.io/web_protocols/packages/url-state/src/index.js';</code></div>
+      </div>
+      <div class="step">
+        <h3>Use in your code</h3>
+        <p>Call the functions wherever you need them. Everything works client-side, no setup required.</p>
+        <pre><code>// Save form state to URL for sharing
+document.getElementById('save-btn').onclick = () => {
+  const data = {
+    search: document.getElementById('search').value,
+    filter: document.getElementById('filter').value,
+    page: currentPage
+  };
+  saveToUrl(data);
+};
+
+// Restore state when page loads
+const state = loadFromUrl();
+if (state) {
+  document.getElementById('search').value = state.search;
+  document.getElementById('filter').value = state.filter;
+  currentPage = state.page;
+}</code></pre>
+      </div>
+      <div class="step">
+        <h3>Done — ship it</h3>
+        <p>No build step needed. Works in all modern browsers. Your users get shareable links, customizable UI, or validated storage — depending on which tools you chose.</p>
+        <div class="note">Remember: you are free to use these tools in any commercial or personal project. See the Terms section for the full license.</div>
+      </div>
+    </div>
+
+    <div class="glow-line"></div>
+
+    <h3 style="text-align:center;margin-bottom:24px;font-size:1.2rem;font-weight:700">Real-World Integration Examples</h3>
+    <div class="protocol-grid">
+      <div class="protocol-card">
+        <h4>E-commerce Filters</h4>
+        <p>Let users share product filter combinations via URL.</p>
+        <pre><code>import { saveToUrl, loadFromUrl }
+  from './url-state.js';
+
+// When filters change
+function onFilterChange() {
+  saveToUrl({
+    category: 'shoes',
+    size: [40, 42],
+    color: 'black',
+    sort: 'price-asc',
+    page: 1
+  });
+}
+
+// On page load
+const f = loadFromUrl();
+if (f) applyFilters(f);</code></pre>
+      </div>
+      <div class="protocol-card">
+        <h4>White-Label Theming</h4>
+        <p>Let clients customize your product's look without code.</p>
+        <pre><code>import { init, applySaved }
+  from './web-editor.js';
+
+// On every page load — apply
+// client's saved customizations
+applySaved();
+
+// Admin page — show editor
+if (isAdmin) {
+  init();
+}</code></pre>
+      </div>
+      <div class="protocol-card">
+        <h4>User Settings Form</h4>
+        <p>Validate user input before persisting to storage.</p>
+        <pre><code>import { rule, guardedSet }
+  from './data-guard.js';
+
+const rules = [
+  rule('name', 'string', 'nonempty'),
+  rule('email', 'email'),
+  rule('age', 'int', 'positive'),
+  rule('website', 'url'),
+];
+
+const result = guardedSet(
+  'settings', formData, rules
+);
+if (!result.saved) {
+  showErrors(result.errors);
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="help" style="background:var(--bg2)">
   <div class="container">
     <div class="section-title">
@@ -488,6 +645,7 @@ Rules applied:
   <p>&copy; 2026 Viktor Brunclik (<a href="https://github.com/vbtronic">vbtronic</a>). All rights reserved.</p>
   <div class="links">
     <a href="https://github.com/vbtronic/web_protocols" target="_blank">GitHub</a>
+    <a href="#integrate">Integrate</a>
     <a href="#terms">Terms</a>
     <a href="#help">Help</a>
     <a href="#download">Download</a>
